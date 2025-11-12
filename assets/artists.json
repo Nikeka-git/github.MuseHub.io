@@ -1,0 +1,82 @@
+[
+  {
+    "id": "the-weeknd",
+    "name": "The Weeknd",
+    "bio": "Canadian singer, songwriter and record producer. Known for blending R&B and pop.",
+    "genre": "R&B",
+    "country": "Canada",
+    "image": "the-weeknd.jpg",
+    "popularity": 95,
+    "tracks": ["Blinding Lights","Save Your Tears","Starboy"]
+  },
+  {
+    "id": "taylor-swift",
+    "name": "Taylor Swift",
+    "bio": "American singer-songwriter with storytelling lyrics across many genres.",
+    "genre": "Pop",
+    "country": "USA",
+    "image": "taylor-swift.jpg",
+    "popularity": 98,
+    "tracks": ["Anti-Hero","Love Story","Cardigan"]
+  },
+  {
+    "id": "maroon5",
+    "name": "Maroon 5",
+    "bio": "American pop rock band formed in Los Angeles in 1994.",
+    "genre": "Pop",
+    "country": "USA",
+    "image": "maroon5.jpg",
+    "popularity": 85,
+    "tracks": ["Memories","She Will Be Loved","Sugar"]
+  },
+  {
+    "id": "aurora",
+    "name": "Aurora",
+    "bio": "Norwegian singer-songwriter known for ethereal voice and atmospheric songs.",
+    "genre": "Alternative",
+    "country": "Norway",
+    "image": "aurora.jpg",
+    "popularity": 68,
+    "tracks": ["Running With The Wolves","Queendom","The Seed"]
+  },
+  {
+    "id": "jackie-burhan",
+    "name": "Jackie Burhan",
+    "bio": "Indie pop singer and songwriter.",
+    "genre": "Indie",
+    "country": "UK",
+    "image": "jackie-burhan.jpg",
+    "popularity": 45,
+    "tracks": ["Miss You","Sunset","Golden Hour"]
+  },
+  {
+    "id": "metal-band-x",
+    "name": "Metal Band X",
+    "bio": "Heavy death metal band from Scandinavia.",
+    "genre": "Metal",
+    "country": "Sweden",
+    "image": "metal-band-x.jpg",
+    "popularity": 52,
+    "tracks": ["Rage","Silent Night","Graveyard"]
+  },
+  {
+    "id": "zeri",
+    "name": "Zeri",
+    "bio": "Fictional fast-paced artist used for demo purposes.",
+    "genre": "Electronic",
+    "country": "USA",
+    "image": "zeri.jpg",
+    "popularity": 60,
+    "tracks": ["Flash","Electric Heart","Neon"]
+  },
+  {
+    "id": "maria",
+    "name": "Maria",
+    "bio": "Pop singer with modern production.",
+    "genre": "Pop",
+    "country": "Brazil",
+    "image": "maria.jpg",
+    "popularity": 50,
+    "tracks": ["Unholy","Love Me Back","Summer Night"]
+  }
+]
