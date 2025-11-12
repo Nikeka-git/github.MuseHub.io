@@ -9,14 +9,75 @@
 </head>
 <body>
 
+<!-- SVG sprite -->
+<svg aria-hidden="true" style="display:none">
+  <!-- SVG sprite: insert once in <body> -->
+  <svg aria-hidden="true" style="display:none">
+    <symbol id="icon-logo" viewBox="0 0 24 24">
+      <rect x="1" y="5" width="3" height="14" rx="1" />
+      <rect x="6" y="8" width="3" height="10" rx="1" />
+      <rect x="11" y="3" width="3" height="16" rx="1" />
+      <rect x="16" y="10" width="3" height="9" rx="1" />
+    </symbol>
+
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+    </symbol>
+
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <path d="M5 3v18l15-9L5 3z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-pause" viewBox="0 0 24 24">
+      <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+      <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-prev" viewBox="0 0 24 24">
+      <path d="M20 6v12l-12-6 12-6z" fill="currentColor"/>
+      <rect x="4" y="6" width="2" height="12" rx="1" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-next" viewBox="0 0 24 24">
+      <rect x="18" y="6" width="2" height="12" rx="1" fill="currentColor"/>
+      <path d="M4 6v12l12-6L4 6z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+      <path d="M12 21s-7-4.6-9.2-7.1C.9 11.7 3 8 6 7c2-.7 4 0 6 2 2-2 4-2.7 6-2 3 .9 5.1 4.7 3.2 6.9C19 16.4 12 21 12 21z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor"/>
+      <path d="M3 20a9 9 0 0118 0" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </symbol>
+
+    <symbol id="icon-menu" viewBox="0 0 24 24">
+      <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"/>
+      <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/>
+      <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"/>
+    </symbol>
+  </svg>
+
+</svg>
+
 <!-- LEFT SIDEBAR -->
 <aside class="sidebar">
-  <h4>MuseHub</h4>
+  <div class="logo">
+    <svg class="icon" aria-hidden="true"><use href="#icon-logo"></use></svg>
+    <h4>MuseHub</h4>
+  </div>
+
   <nav class="nav-column">
-    <a href="index.html">Dashboard</a>
-    <a href="artists.html">Artists</a>
-    <a href="minigame.html">Mini-game</a>
-    <a href="aboutANDcontact.html">About / Contact</a>
+    <a href="index.html" class="active"><svg class="icon icon-sm"><use href="#icon-menu"></use></svg> Dashboard</a>
+    <a href="artists.html"><svg class="icon icon-sm"><use href="#icon-user"></use></svg> Artists</a>
+    <a href="minigame.html"><svg class="icon icon-sm"><use href="#icon-search"></use></svg> Mini-game</a>
+    <a href="aboutANDcontact.html"><svg class="icon icon-sm"><use href="#icon-user"></use></svg> About / Contact</a>
   </nav>
 </aside>
 
@@ -39,15 +100,28 @@
 
 <!-- MAIN CONTENT -->
 <main class="main">
-  <div class="topbar">
-    <div style="display:flex; align-items:center; gap:1rem;">
-      <div style="font-weight:700; font-size:1.25rem; color:var(--accent)"> Music 1</div>
-      <div class="search" style="max-width:560px;">
-        <input id="global-search" placeholder="Search Music, Artist, Genre" />
+    <div class="topbar">
+    <div class="topbar-left">
+      <div class="brand"><span class="badge">M</span> Music 1</div>
+    </div>
+
+    <div class="topbar-center">
+      <div class="search" style="max-width:560px; width:100%;">
+        <div style="position:relative;">
+          <svg class="icon" style="position:absolute; left:12px; top:50%; transform:translateY(-50%);"><use href="#icon-search"></use></svg>
+          <input id="global-search" placeholder="Search Music, Artist, Genre" style="padding-left:44px; width:100%;" />
+        </div>
       </div>
     </div>
-    <div style="display:flex; align-items:center; gap:.6rem;">
-      <img src="assets/images/user-placeholder.jpg" alt="user" style="width:44px; height:44px; border-radius:50%">
+
+    <div class="topbar-right">
+      <!-- статическая кнопка переключения темы — main.js НЕ создаст дубликат -->
+      <button id="theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
+
+      <!-- аватар (оставляем тут) -->
+      <div style="display:flex; align-items:center; gap:.6rem; margin-left:8px;">
+        <img src="assets/images/user-placeholder.jpg" alt="user" class="avatar" style="width:44px;height:44px;border-radius:50%;">
+      </div>
     </div>
   </div>
 
@@ -89,7 +163,7 @@
         </div>
       </div>
       <div class="controls">
-        <button onclick="setNowPlaying('Memories — Maroon 5')">"start button"</button>
+        <button onclick="setNowPlaying('Memories — Maroon 5')" aria-label="Play"><svg class="icon"><use href="#icon-play"></use></svg></button>
       </div>
     </div>
 
@@ -102,30 +176,61 @@
         </div>
       </div>
       <div class="controls">
-        <button onclick="setNowPlaying('Anti Hero — Taylor Swift')">"start button"</button>
+        <button onclick="setNowPlaying('Anti Hero — Taylor Swift')" aria-label="Play"><svg class="icon"><use href="#icon-play"></use></svg></button>
       </div>
     </div>
   </section>
 </main>
 
 <!-- FOOTER PLAYER -->
-<footer class="player">
-  <div id="now-playing">Now Playing: —</div>
-  <div class="controls">
-    <button>"Track back b"</button>
-    <button>"Play/Pause b"</button>
-    <button>"Next track b"</button>
-    <input type="range" min="0" max="100" value="20">
+<footer class="player" role="region" aria-label="Music player">
+  <div class="left">
+    <img src="assets/images/memories.jpg" alt="current track" style="width:52px;height:52px;border-radius:8px;object-fit:cover">
+    <div id="now-playing">Now Playing: —</div>
+  </div>
+
+  <div class="center">
+    <div class="controls" aria-hidden="false">
+      <button id="btn-prev" aria-label="Previous track"><svg class="icon"><use href="#icon-prev"></use></svg></button>
+      <button id="btn-play" aria-label="Play/Pause"><svg id="svg-play-state" class="icon"><use href="#icon-play"></use></svg></button>
+      <button id="btn-next" aria-label="Next track"><svg class="icon"><use href="#icon-next"></use></svg></button>
+    </div>
+    <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+      <div class="bar" style="width:20%"></div>
+    </div>
+  </div>
+
+  <div class="right">
+    <button id="btn-like" aria-label="Like"><svg class="icon"><use href="#icon-heart"></use></svg></button>
+    <input type="range" min="0" max="100" value="20" aria-label="Volume">
   </div>
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/ui-fixes.js"></script>
+
 <script>
   window.setNowPlaying = (t) => {
     const el = document.getElementById('now-playing');
     if(el) el.textContent = 'Now Playing: ' + t;
   };
+
+  // simple play/pause toggle to update icon (no audio)
+  (function(){
+    const playBtn = document.getElementById('btn-play');
+    const playSvgUse = document.querySelector('#svg-play-state use');
+    let playing = false;
+    if(playBtn){
+      playBtn.addEventListener('click', ()=>{
+        playing = !playing;
+        // swap icon by changing href on <use>
+        const useEl = document.querySelector('#svg-play-state use');
+        if(useEl) useEl.setAttribute('href', playing ? '#icon-pause' : '#icon-play');
+      });
+    }
+  })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

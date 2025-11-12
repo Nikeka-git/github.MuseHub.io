@@ -1,0 +1,219 @@
+/* style.css — cleaned version (replace your file) */
+
+/* Basic reset */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: "Inter", sans-serif; background: #111; color: #e7e7e7; }
+
+/* Layout variables (small, inline) */
+:root {
+  --sidebar-w: 220px;
+  --rightbar-w: 210px;
+  --accent: #bf00cf;
+  --accent-2: #7b2bff;
+  --muted: #9f9f9f;
+  --panel: #1a1a1a;
+  --radius: 12px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--panel);
+  padding: 1.3rem;
+  height: calc(100vh - 0px);
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0;
+}
+.sidebar h4 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Nav */
+.nav-column {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.nav-column a {
+  color: #9f9f9f;
+  text-decoration: none;
+  padding: .6rem .6rem;
+  transition: .15s;
+  display:flex; align-items:center; gap:.6rem; border-radius:10px;
+}
+.nav-column a:hover, .nav-column a:focus {
+  color: #fff;
+  background: rgba(191,0,207,0.12);
+  transform: translateX(4px);
+}
+.nav-column a.active {
+  color: #fff;
+  background: var(--accent);
+}
+
+/* Rightbar */
+.rightbar {
+  width: var(--rightbar-w);
+  background: var(--panel);
+  padding: 1.2rem;
+  height: calc(100vh - 0px);
+  position: fixed;
+  right: 0;
+  top: 0;
+  border-left: 1px solid rgba(255,255,255,0.08);
+  overflow-y: auto;
+}
+.rightbar h5 { font-weight: 600; margin-bottom: .5rem; }
+.rightbar .list-group { display:flex; flex-direction:column; gap:.45rem; }
+.rightbar .list-group-item {
+  background: rgba(255,255,255,0.05);
+  color: #e7e7e7;
+  padding: .6rem .8rem;
+  border-radius: 10px;
+  border: none;
+  cursor: default;
+}
+.rightbar .list-group-item:hover { cursor:pointer; transform: translateY(-3px); }
+
+/* Main area */
+.main {
+  margin-left: calc(var(--sidebar-w));
+  margin-right: calc(var(--rightbar-w));
+  padding: 1.8rem;
+  width: calc(100% - var(--sidebar-w) - var(--rightbar-w));
+  padding-bottom: 140px; /* reserve for player */
+}
+.main h2, .main h3 { font-weight:700; }
+
+/* Topbar: left/center/right groups
+   We expect topbar to contain three wrappers:
+   .topbar-left, .topbar-center, .topbar-right
+*/
+.topbar {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:space-between;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1rem;
+  min-height: 56px;
+}
+.topbar-left { display:flex; align-items:center; gap:12px; }
+.topbar-center { flex: 1 1 auto; display:flex; align-items:center; gap:12px; min-width:0; }
+.topbar-right { display:flex; align-items:center; gap:8px; }
+
+/* Brand and badge */
+.brand { font-weight:700; font-size:1.05rem; display:flex; align-items:center; gap:8px; }
+.brand .badge {
+  width:36px; height:36px; display:grid; place-items:center; border-radius:8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff; font-weight:800;
+}
+
+/* Search */
+.search { width:100%; max-width:560px; }
+.search input {
+  width:100%;
+  padding: .6rem 1rem .6rem 44px;
+  border-radius:999px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font-weight:600;
+  min-width: 140px;
+}
+.search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: .85; }
+
+/* Theme toggle: basic visual (we DO NOT create via JS; HTML contains it) */
+#theme-toggle-btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:36px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color:#fff;
+  cursor:pointer;
+}
+
+/* Genre cards */
+.genre-row { display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 8px; }
+.genre-card {
+  background: var(--panel);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 240px;
+  transition: transform .15s;
+  cursor:pointer;
+  border: 1px solid rgba(255,255,255,0.02);
+}
+.genre-card img { width:100%; height:140px; object-fit:cover; display:block; }
+.genre-card .meta { padding: .8rem; }
+.genre-card:hover { transform: translateY(-6px); }
+
+/* Track rows */
+.track-row {
+  background: rgba(255,255,255,0.035);
+  padding: .8rem 1rem;
+  border-radius: 14px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top: .8rem;
+}
+.track-left { display:flex; align-items:center; gap:12px; }
+.track-left img { width:56px; height:56px; border-radius:12px; object-fit:cover; }
+
+/* Player (fixed) */
+.player {
+  position: fixed;
+  bottom: 16px;
+  left: calc(var(--sidebar-w) + 16px);
+  right: calc(var(--rightbar-w) + 16px);
+  background: #0d0d0d;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 14px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  border-radius: 10px; z-index:60;
+}
+.player .left { display:flex; align-items:center; gap:12px; min-width:200px; }
+.player .center { display:flex; align-items:center; gap:14px; flex:1; justify-content:center; }
+.player .right { display:flex; align-items:center; gap:12px; }
+
+/* Player buttons */
+.player button {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border: none;
+  padding: .45rem .85rem;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+#btn-play { width:56px; height:44px; border-radius:14px; }
+
+/* Heart */
+#btn-like { width:48px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:12px; }
+
+/* Simple form controls */
+.form-control { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #fff; padding: 10px; border-radius: 8px; }
+button.btn-primary { background: var(--accent); border: none; color: #fff; padding: .6rem 1rem; border-radius: 12px; }
+
+/* icons */
+.icon { width:20px; height:20px; display:inline-block; vertical-align:middle; fill:currentColor; }
+
+/* Accessibility focus */
+:focus { outline: 3px solid rgba(191,0,207,0.12); outline-offset: 3px; }
+
+/* Responsive */
+@media (max-width:900px) {
+  .sidebar, .rightbar { display:none; }
+  .main { margin-left: 0; margin-right: 0; padding-bottom: 220px; }
+  .player { left: 12px; right: 12px; border-radius:12px; }
+  .search input { min-width: 140px; }
+}

@@ -1,4 +1,6 @@
+/* js/artistDetail.js (обновлённый: иконки в modal) */
 (function(){
+  // ... (весь код ensureData / getIdFromUrl остаётся как в предыдущей версии)
   function getIdFromUrl(){
     const params = new URLSearchParams(location.search);
     return params.get('id');
@@ -6,25 +8,12 @@
 
   function ensureData(cb){
     if(window.MUSEHUB_DATA) return cb(window.MUSEHUB_DATA);
-
-    function tryFetch(path){
-      return fetch(path).then(r => {
-        if(!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      });
-    }
-
-    tryFetch('assets/artists.json')
-      .then(data => { window.MUSEHUB_DATA = data; cb(data); })
-      .catch(() => {
-        tryFetch('artists.json')
-          .then(data => { window.MUSEHUB_DATA = data; cb(data); })
-          .catch(err => { console.error('artistDetail.js: failed to load artists.json', err); cb([]); });
-      });
+    fetch('assets/artists.json').then(r=>r.json()).then(data => { window.MUSEHUB_DATA = data; cb(data); }).catch(()=> {
+      fetch('artists.json').then(r=>r.json()).then(data => { window.MUSEHUB_DATA = data; cb(data); }).catch(()=> cb([]));
+    });
   }
 
   function createModal(tracks, artistName){
-    // remove existing
     const old = document.getElementById('mh-track-modal');
     if(old) old.remove();
 
@@ -41,25 +30,22 @@
     const box = document.createElement('div');
     box.style.width = 'min(900px, 95%)';
     box.style.maxHeight = '90vh';
-    box.style.background = '#fff';
+    box.style.background = '#0f0f11';
     box.style.borderRadius = '12px';
     box.style.padding = '1rem';
     box.style.position = 'relative';
     box.style.overflow = 'hidden';
-    box.style.boxSizing = 'border-box';
 
     const title = document.createElement('h4');
     title.textContent = `${artistName} — Tracks`;
     box.appendChild(title);
 
-    // slider container
     const slider = document.createElement('div');
     slider.style.display = 'flex';
     slider.style.gap = '10px';
     slider.style.transition = 'transform .35s ease';
     slider.style.width = '100%';
 
-    // each slide
     tracks.forEach((t, i) => {
       const s = document.createElement('div');
       s.style.minWidth = '100%';
@@ -69,13 +55,15 @@
 
       const h = document.createElement('h5'); h.textContent = t;
       const p = document.createElement('p'); p.textContent = `Track ${i+1} — ${t}`;
-      const play = document.createElement('button'); play.textContent = 'Play (simulate)';
+      const play = document.createElement('button');
       play.className = 'btn btn-primary';
+      play.setAttribute('aria-label', 'Play this track');
+      play.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg> Play`;
       play.style.marginTop = '8px';
       play.addEventListener('click', ()=> {
-        // simulate play: change global now playing
         if(window.setNowPlaying) window.setNowPlaying(`${t} — ${artistName}`);
       });
+
       s.appendChild(h); s.appendChild(p); s.appendChild(play);
       slider.appendChild(s);
     });
@@ -85,21 +73,24 @@
     container.appendChild(slider);
     box.appendChild(container);
 
-    // controls
     let index = 0;
-    const prevBtn = document.createElement('button'); prevBtn.textContent = '◀';
-    const nextBtn = document.createElement('button'); nextBtn.textContent = '▶';
-    prevBtn.className = 'btn btn-outline-secondary btn-sm';
-    nextBtn.className = 'btn btn-outline-secondary btn-sm';
+    const prevBtn = document.createElement('button'); prevBtn.className = 'btn btn-outline-secondary btn-sm';
+    prevBtn.setAttribute('aria-label', 'Previous slide');
     prevBtn.style.marginRight = '0.5rem';
+    prevBtn.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#icon-prev"></use></svg>`;
     prevBtn.addEventListener('click', () => {
       index = Math.max(0, index-1);
       slider.style.transform = `translateX(-${index*100}%)`;
     });
+
+    const nextBtn = document.createElement('button'); nextBtn.className = 'btn btn-outline-secondary btn-sm';
+    nextBtn.setAttribute('aria-label', 'Next slide');
+    nextBtn.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#icon-next"></use></svg>`;
     nextBtn.addEventListener('click', () => {
       index = Math.min(tracks.length-1, index+1);
       slider.style.transform = `translateX(-${index*100}%)`;
     });
+
     const ctrl = document.createElement('div');
     ctrl.style.position = 'absolute';
     ctrl.style.bottom = '12px';
@@ -108,18 +99,17 @@
     ctrl.appendChild(nextBtn);
     box.appendChild(ctrl);
 
-    // close when click outside box
     overlay.addEventListener('click', (e)=>{
       if(e.target === overlay) overlay.remove();
     });
 
-    // close button
     const close = document.createElement('button');
-    close.textContent = '✖';
     close.className = 'btn btn-light btn-sm';
     close.style.position='absolute';
     close.style.top='8px';
     close.style.right='8px';
+    close.setAttribute('aria-label','Close');
+    close.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>`;
     close.addEventListener('click', ()=> overlay.remove());
     box.appendChild(close);
 
@@ -162,16 +152,12 @@
         btn.textContent = t;
         btn.className = 'btn btn-outline-secondary btn-sm';
         btn.style.margin = '6px 0';
-        btn.addEventListener('click', ()=> {
-          // open modal with carousel
-          createModal(artist.tracks, artist.name);
-        });
+        btn.addEventListener('click', ()=> { createModal(artist.tracks, artist.name); });
         li.appendChild(btn);
         ol.appendChild(li);
       });
     }
 
-    // favorites
     const favBtn = document.getElementById('favorite-button');
     if(favBtn){
       let favs = [];
@@ -200,7 +186,6 @@
     if(!id) return;
     ensureData((all) => {
       const artist = (all || []).find(a => a.id === id);
-      // fallback: try decode and match ignoring case / name matching
       if(!artist){
         const lower = (id || '').toLowerCase();
         const f = (all || []).find(a => (a.id || '').toLowerCase() === lower || (a.name || '').toLowerCase() === lower);
