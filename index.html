@@ -6,6 +6,7 @@
 <title>MuseHub — Dashboard</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
 
@@ -115,77 +116,32 @@
     </div>
 
     <div class="topbar-right">
-      <!-- статическая кнопка переключения темы — main.js НЕ создаст дубликат -->
-      <button id="theme-toggle-btn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
-
       <!-- аватар (оставляем тут) -->
       <div style="display:flex; align-items:center; gap:.6rem; margin-left:8px;">
-        <img src="assets/images/user-placeholder.jpg" alt="user" class="avatar" style="width:44px;height:44px;border-radius:50%;">
+        <img src="assets/images/user-placeholder.jpg" alt="user" class="avatar" style="width:44px;height:44px;border-radius:50%;" 
+          onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<?xml version=&quot;1.0&quot;?><svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;200&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=%22%23e0e0e0%22/><g fill=%22%23999%22><circle cx=%22100%22 cy=%2260%22 r=%2240%22/><path d=%22M30 170c25-50 300-50 340 0v20H30z%22/></g></svg>'">
       </div>
     </div>
   </div>
 
-  <section>
-    <h3>Discover Genre</h3>
-    <div class="genre-row">
-      <div class="genre-card">
-        <img src="assets/images/acoustic.jpg" alt="">
-        <div class="meta">
-          <h5>Acoustic</h5>
-          <p>120 Tracks</p>
-        </div>
-      </div>
-      <div class="genre-card">
-        <img src="assets/images/metal.jpg" alt="">
-        <div class="meta">
-          <h5>Death Metal</h5>
-          <p>180 Tracks</p>
-        </div>
-      </div>
-      <div class="genre-card">
-        <img src="assets/images/pop.jpg" alt="">
-        <div class="meta">
-          <h5>Pop</h5>
-          <p>200 Tracks</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
-  <section class="top-music">
-    <h3 style="margin-top:1.2rem">Top Music</h3>
-    <div class="track-row">
-      <div class="track-left">
-        <img src="assets/images/memories.jpg" alt="">
-        <div class="track-title">
-          <div class="title">Maroon 5 — Memories</div>
-          <div class="meta">04:20</div>
-        </div>
-      </div>
-      <div class="controls">
-        <button onclick="setNowPlaying('Memories — Maroon 5')" aria-label="Play"><svg class="icon"><use href="#icon-play"></use></svg></button>
-      </div>
-    </div>
+  <section class="top-music" aria-label="Top Music">
+  <h3 style="margin-top:1.2rem">Top Music</h3>
 
-    <div class="track-row">
-      <div class="track-left">
-        <img src="assets/images/anti-hero.jpg" alt="">
-        <div class="track-title">
-          <div class="title">Taylor Swift — Anti Hero</div>
-          <div class="meta">04:10</div>
-        </div>
-      </div>
-      <div class="controls">
-        <button onclick="setNowPlaying('Anti Hero — Taylor Swift')" aria-label="Play"><svg class="icon"><use href="#icon-play"></use></svg></button>
-      </div>
-    </div>
-  </section>
+  <!-- контейнер для динамического списка -->
+  <div id="top-music-list" class="top-music-list" aria-live="polite"></div>
+</section>
+
 </main>
 
 <!-- FOOTER PLAYER -->
 <footer class="player" role="region" aria-label="Music player">
   <div class="left">
-    <img src="assets/images/memories.jpg" alt="current track" style="width:52px;height:52px;border-radius:8px;object-fit:cover">
+    <img src="assets/images/memories.jpg" alt="current track"
+     style="width:52px;height:52px;border-radius:8px;object-fit:cover"
+     onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;200&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=%22%23e0e0e0%22/></svg>'">
+
     <div id="now-playing">Now Playing: —</div>
   </div>
 

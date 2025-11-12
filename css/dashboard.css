@@ -1,0 +1,352 @@
+/* css/dashboard.css — compact player & small fixes */
+
+/* Accent fallback */
+:root {
+  --accent: #bf00cf;
+  --accent-2: #7b2bff;
+}
+
+/* ---------- PLAYER: layout safety (no wrapping) ---------- */
+footer.player {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding: 10px 14px;
+  box-sizing: border-box;
+}
+
+/* center area: keep its elements on one row, progress grows */
+footer.player .center {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  flex: 1 1 auto;
+  min-width: 0;    /* allow progress to shrink */
+  flex-wrap: nowrap; /* never wrap the controls */
+}
+
+/* controls container should not wrap */
+footer.player .controls {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+/* ---------- BUTTON SIZING: smaller, consistent ---------- */
+/* All control buttons in footer: compact and equal */
+footer.player .controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+  margin: 0;
+  padding: 0;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+}
+
+/* Slightly larger play button but not huge */
+#btn-play {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+}
+
+/* Icons: keep inside, don't affect parent size */
+footer.player .controls button svg.icon {
+  width: 20px;
+  height: 20px;
+  display:block;
+}
+
+/* hover/active */
+footer.player .controls button:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(0,0,0,0.55); }
+footer.player .controls button:active { transform: translateY(-1px); }
+
+/* Disabled look */
+footer.player .controls button[disabled] { opacity: .45; cursor:not-allowed; box-shadow:none; }
+
+/* ---------- PROGRESS bar slight tweak ---------- */
+footer.player .progress { flex: 1 1 auto; min-width: 80px; }
+footer.player .progress .bar { height: 6px; border-radius: 6px; background: linear-gradient(90deg,var(--accent),var(--accent-2)); }
+
+/* ---------- TOP MUSIC play button (small row button) ---------- */
+/* Make the "Play" buttons in the Top Music rows small, circular and subtle */
+.track-row .controls button {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: #fff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 0;
+  box-shadow: none;
+  transition: transform .12s ease, background .12s;
+}
+
+.track-row .controls button svg.icon { width: 16px; height: 16px; }
+
+/* hover for row buttons */
+.track-row .controls button:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(90deg, rgba(191,0,207,0.12), rgba(123,43,255,0.12));
+}
+
+/* ---------- IMAGE placeholders: center broken-icon neat ---------- */
+.genre-card img,
+.track-left img,
+.player .left img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+/* if image failed to load — ensure box is visually centered and neutral */
+.genre-card img[alt=""],
+.track-left img[alt=""] {
+  background: #0b0b0b;
+}
+
+/* ---------- RIGHTBAR — visual pointer (already clickable) ---------- */
+.rightbar .list-group-item { cursor:pointer; }
+
+/* responsive */
+@media (max-width:900px) {
+  footer.player { left:12px; right:12px; }
+  #btn-play { width:48px; height:48px; }
+  footer.player .controls button { width:40px; height:40px; }
+  .track-row .controls button { width:36px; height:36px; }
+  .genre-card img, .track-left img { height:120px; }
+}
+
+/* ---------- PLAYER: polished progress bar + volume slider ---------- */
+
+/* Ensure we override Bootstrap .progress defaults only inside footer.player */
+footer.player .progress {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;        /* занимает оставшееся место */
+  min-width: 120px;
+  margin: 0 8px;         /* пространство между controls и right */
+  height: 12px;
+  padding: 4px;          /* internal padding to make track look nice */
+  background: rgba(255,255,255,0.02);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  overflow: hidden;
+}
+
+/* Bar inside progress: the filled portion */
+footer.player .progress .bar {
+  height: 100%;
+  width: 20%; /* keep inline-style override if needed */
+  max-width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width .25s ease;
+  box-shadow: 0 6px 18px rgba(123,43,255,0.09), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Optional thin scrubber handle (visual only) */
+footer.player .progress .bar::after {
+  content: "";
+  position: absolute;
+}
+
+/* Make the progress container position:relative so we can place a scrubber later if needed */
+footer.player .progress { position: relative; }
+
+/* Add a subtle hover state for easy discoverability */
+footer.player .progress:hover { background: rgba(255,255,255,0.03); }
+
+/* If you want a visible scrubber (dot) at the end of the bar — uncomment below */
+/*
+footer.player .progress .bar::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+}
+*/
+
+/* ---------- Volume input (right) — custom minimal track & thumb ---------- */
+footer.player input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 120px;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+  outline: none;
+  margin-left: 8px;
+  transition: box-shadow .12s;
+}
+
+/* WebKit track */
+footer.player input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+footer.player input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -3px; /* center the thumb */
+  border-radius: 50%;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+  border: none;
+}
+
+/* Firefox */
+footer.player input[type="range"]::-moz-range-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 999px;
+}
+footer.player input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  border: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.45);
+}
+
+/* Edge/IE fallback */
+footer.player input[type="range"]::-ms-track { background: transparent; border-color: transparent; color: transparent; }
+footer.player input[type="range"]::-ms-thumb {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: linear-gradient(90deg,var(--accent),var(--accent-2)); border:none;
+}
+
+/* Small screens adapt */
+@media (max-width:900px) {
+  footer.player .progress { margin: 0 6px; min-width: 80px; }
+  footer.player input[type="range"] { width: 90px; }
+}
+
+
+/* ---------- TOP MUSIC: dynamic rows ---------- */
+.top-music-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* Track row card */
+.track-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(26,26,26,0.95), rgba(17,17,17,0.95));
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+/* Hover */
+.track-row:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+}
+
+/* Left block: image + title */
+.track-left {
+  display:flex;
+  gap:12px;
+  align-items:center;
+  min-width:0;
+  flex: 1 1 auto;
+}
+
+/* thumbnail */
+.track-left img {
+  width:64px;
+  height:64px;
+  border-radius:10px;
+  object-fit:cover;
+  object-position:center;
+  flex: 0 0 64px;
+}
+
+/* title + meta (stack) */
+.track-title {
+  min-width: 0;
+}
+.track-title .title {
+  font-weight:700;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.track-title .meta {
+  color: rgba(255,255,255,0.6);
+  font-size:0.92rem;
+}
+
+/* Controls at right: play, like */
+.track-controls {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex: 0 0 auto;
+}
+
+/* small circular action buttons */
+.track-controls button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .12s, background .12s;
+}
+.track-controls button svg.icon { width:16px; height:16px; }
+
+/* liked state */
+.track-controls .btn-like.liked {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 18px rgba(123,43,255,0.12);
+  border: none;
+}
+
+/* active (currently playing) row */
+.track-row.active {
+  box-shadow: 0 18px 40px rgba(123,43,255,0.08);
+  border: 1px solid rgba(123,43,255,0.12);
+}
+
+/* responsive */
+@media (max-width:900px) {
+  .track-left img { width:56px; height:56px; flex:0 0 56px; }
+  .track-controls button { width:36px; height:36px; }
+}

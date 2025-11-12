@@ -1,100 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MuseHub — Mini-game</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MuseHub — Mini-game</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- page-specific dashboard overrides (optional if you have it) -->
+  <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    /* Page-scoped styles for the quiz card so we don't touch global style.css */
+    .quiz-wrap { padding: 1.6rem; }
+    .quiz-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, rgba(26,26,26,0.98), rgba(12,12,12,0.98));
+      border-radius: 16px;
+      padding: 1.8rem;
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.6);
+    }
+    .quiz-head {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom: 1rem;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #fff;
+      padding: 0.45rem .7rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .quiz-title { font-size:1.1rem; font-weight:700; color:#fff; margin:0; }
+    #question { color: #eaeaea; font-size:1.15rem; margin: .8rem 0 1rem; line-height:1.35; }
+    ul#answers { list-style:none; padding:0; margin:0; display:grid; gap:.7rem; }
+    #answers button {
+      width:100%;
+      padding:.9rem 1rem;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:#fff;
+      font-weight:600;
+      text-align:left;
+      transition: transform .12s, box-shadow .12s, background .12s;
+    }
+    #answers button:hover:not(:disabled){ transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.6); }
+    #answers button.btn-success { background: linear-gradient(90deg,#6bffb2,#47d18c); color:#022; border:none; }
+    #answers button.btn-danger  { background: linear-gradient(90deg,#ff6f91,#ff2f56); color:#111; border:none; }
+    .quiz-footer { display:flex; justify-content:space-between; align-items:center; margin-top:1.1rem; gap:12px; }
+    #next-btn { background: linear-gradient(90deg,var(--accent),var(--accent-2)); border:none; color:#fff; padding:.6rem 1rem; border-radius:10px; font-weight:700; }
+    @media (max-width:900px){
+      .main { padding: 1rem; }
+      .quiz-card { padding: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
-  <!-- SVG sprite -->
-<svg aria-hidden="true" style="display:none">
-  <!-- SVG sprite: insert once in <body> -->
+  <!-- SVG sprite (same as other pages) -->
   <svg aria-hidden="true" style="display:none">
-    <symbol id="icon-logo" viewBox="0 0 24 24">
-      <rect x="1" y="5" width="3" height="14" rx="1" />
-      <rect x="6" y="8" width="3" height="10" rx="1" />
-      <rect x="11" y="3" width="3" height="16" rx="1" />
-      <rect x="16" y="10" width="3" height="9" rx="1" />
-    </symbol>
-
-    <symbol id="icon-search" viewBox="0 0 24 24">
-      <path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
-    </symbol>
-
-    <symbol id="icon-play" viewBox="0 0 24 24">
-      <path d="M5 3v18l15-9L5 3z" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-pause" viewBox="0 0 24 24">
-      <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/>
-      <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-prev" viewBox="0 0 24 24">
-      <path d="M20 6v12l-12-6 12-6z" fill="currentColor"/>
-      <rect x="4" y="6" width="2" height="12" rx="1" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-next" viewBox="0 0 24 24">
-      <rect x="18" y="6" width="2" height="12" rx="1" fill="currentColor"/>
-      <path d="M4 6v12l12-6L4 6z" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-heart" viewBox="0 0 24 24">
-      <path d="M12 21s-7-4.6-9.2-7.1C.9 11.7 3 8 6 7c2-.7 4 0 6 2 2-2 4-2.7 6-2 3 .9 5.1 4.7 3.2 6.9C19 16.4 12 21 12 21z" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-user" viewBox="0 0 24 24">
-      <path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor"/>
-      <path d="M3 20a9 9 0 0118 0" fill="currentColor"/>
-    </symbol>
-
-    <symbol id="icon-close" viewBox="0 0 24 24">
-      <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    </symbol>
-
-    <symbol id="icon-menu" viewBox="0 0 24 24">
-      <rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"/>
-      <rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/>
-      <rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"/>
-    </symbol>
+    <svg aria-hidden="true" style="display:none">
+      <symbol id="icon-logo" viewBox="0 0 24 24"><rect x="1" y="5" width="3" height="14" rx="1"/><rect x="6" y="8" width="3" height="10" rx="1"/><rect x="11" y="3" width="3" height="16" rx="1"/><rect x="16" y="10" width="3" height="9" rx="1"/></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+      <symbol id="icon-play" viewBox="0 0 24 24"><path d="M5 3v18l15-9L5 3z" fill="currentColor"/></symbol>
+      <symbol id="icon-pause" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor"/><rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor"/></symbol>
+      <symbol id="icon-prev" viewBox="0 0 24 24"><path d="M20 6v12l-12-6 12-6z" fill="currentColor"/><rect x="4" y="6" width="2" height="12" rx="1" fill="currentColor"/></symbol>
+      <symbol id="icon-next" viewBox="0 0 24 24"><rect x="18" y="6" width="2" height="12" rx="1" fill="currentColor"/><path d="M4 6v12l12-6L4 6z" fill="currentColor"/></symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.2-7.1C.9 11.7 3 8 6 7c2-.7 4 0 6 2 2-2 4-2.7 6-2 3 .9 5.1 4.7 3.2 6.9C19 16.4 12 21 12 21z" fill="currentColor"/></symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8z" fill="currentColor"/><path d="M3 20a9 9 0 0118 0" fill="currentColor"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"/></symbol>
+    </svg>
   </svg>
 
-</svg>
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <h4>MuseHub</h4>
+    <nav class="nav-column">
+      <a href="index.html"><svg class="icon icon-sm"><use href="#icon-menu"></use></svg> Dashboard</a>
+      <a href="artists.html"><svg class="icon icon-sm"><use href="#icon-user"></use></svg> Artists</a>
+      <a href="minigame.html" class="active"><svg class="icon icon-sm"><use href="#icon-search"></use></svg> Mini-game</a>
+      <a href="aboutANDcontact.html"><svg class="icon icon-sm"><use href="#icon-user"></use></svg> About / Contact</a>
+    </nav>
+  </aside>
 
-<aside class="sidebar">
-  <h4>MuseHub</h4>
-  <nav class="nav-column">
-    <a href="index.html">Dashboard</a>
-    <a href="artists.html">Artists</a>
-    <a href="minigame.html">Mini-game</a>
-    <a href="aboutANDcontact.html">About / Contact</a>
-  </nav>
-</aside>
+  <!-- RIGHT SIDEBAR -->
+  <aside class="rightbar">
+    <h5>Top Artist</h5>
+    <div class="list-group">
+      <div class="list-group-item">The Weeknd</div>
+      <div class="list-group-item">Taylor Swift</div>
+    </div>
+  </aside>
 
-<aside class="rightbar">
-  <h5>Top Artist</h5>
-  <div class="list-group">
-    <div class="list-group-item">The Weeknd</div>
-    <div class="list-group-item">Taylor Swift</div>
-  </div>
-</aside>
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="brand"><span class="badge">M</span> Music 1</div>
+      </div>
+      <div class="topbar-center"></div>
+      <div class="topbar-right"></div>
+    </div>
 
-<main class="main">
-  <h2>Music Quiz</h2>
-  <div id="game" style="max-width:800px">
-    <h3 id="question">Question will appear here</h3>
-    <ul id="answers" style="list-style:none; padding:0; margin:1rem 0"></ul>
-    <p>Score: <span id="score">0</span></p>
-    <button id="next-btn" class="btn btn-primary">Next Question</button>
-  </div>
-</main>
+    <div class="quiz-wrap">
+      <div class="quiz-card" role="region" aria-labelledby="quiz-title">
+        <div class="quiz-head">
+          <button class="btn-back" id="btn-back" title="Назад">← Назад</button>
+          <h2 id="quiz-title" class="quiz-title">Music Quiz</h2>
+        </div>
 
-<script src="js/main.js"></script>
-<script src="js/minigame.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <h3 id="question">Вопрос загрузки...</h3>
+
+        <ul id="answers" aria-live="polite"></ul>
+
+        <div class="quiz-footer">
+          <div class="score">Score: <strong id="score">0</strong></div>
+          <button id="next-btn">Next Question</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER PLAYER -->
+  <footer class="player" role="region" aria-label="Music player">
+    <div class="left">
+      <img src="assets/images/memories.jpg" alt="current track" style="width:52px;height:52px;border-radius:8px;object-fit:cover"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;200&quot; height=&quot;200&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=%22%230b0b0b%22/></svg>'">
+      <div id="now-playing">Now Playing: —</div>
+    </div>
+
+    <div class="center">
+      <div class="controls" aria-hidden="false">
+        <button id="btn-prev" aria-label="Previous track"><svg class="icon"><use href="#icon-prev"></use></svg></button>
+        <button id="btn-play" aria-label="Play/Pause"><svg id="svg-play-state" class="icon"><use href="#icon-play"></use></svg></button>
+        <button id="btn-next" aria-label="Next track"><svg class="icon"><use href="#icon-next"></use></svg></button>
+      </div>
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="20">
+        <div class="bar" style="width:20%"></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <button id="btn-like" aria-label="Like"><svg class="icon"><use href="#icon-heart"></use></svg></button>
+      <input type="range" min="0" max="100" value="20" aria-label="Volume">
+    </div>
+  </footer>
+
+  <script>
+    // Back button: prefer history.back(), fallback to index.html
+    document.addEventListener('DOMContentLoaded', function(){
+      const b = document.getElementById('btn-back');
+      if(!b) return;
+      b.addEventListener('click', function(e){
+        if(window.history.length > 1) return history.back();
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+
+  <script src="js/main.js"></script>
+  <script src="js/minigame.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

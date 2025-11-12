@@ -1,82 +1,702 @@
-[
-  {
-    "id": "the-weeknd",
-    "name": "The Weeknd",
-    "bio": "Canadian singer, songwriter and record producer. Known for blending R&B and pop.",
-    "genre": "R&B",
-    "country": "Canada",
-    "image": "the-weeknd.jpg",
-    "popularity": 95,
-    "tracks": ["Blinding Lights","Save Your Tears","Starboy"]
-  },
-  {
-    "id": "taylor-swift",
-    "name": "Taylor Swift",
-    "bio": "American singer-songwriter with storytelling lyrics across many genres.",
-    "genre": "Pop",
-    "country": "USA",
-    "image": "taylor-swift.jpg",
-    "popularity": 98,
-    "tracks": ["Anti-Hero","Love Story","Cardigan"]
-  },
-  {
-    "id": "maroon5",
-    "name": "Maroon 5",
-    "bio": "American pop rock band formed in Los Angeles in 1994.",
-    "genre": "Pop",
-    "country": "USA",
-    "image": "maroon5.jpg",
-    "popularity": 85,
-    "tracks": ["Memories","She Will Be Loved","Sugar"]
-  },
-  {
-    "id": "aurora",
-    "name": "Aurora",
-    "bio": "Norwegian singer-songwriter known for ethereal voice and atmospheric songs.",
-    "genre": "Alternative",
-    "country": "Norway",
-    "image": "aurora.jpg",
-    "popularity": 68,
-    "tracks": ["Running With The Wolves","Queendom","The Seed"]
-  },
-  {
-    "id": "jackie-burhan",
-    "name": "Jackie Burhan",
-    "bio": "Indie pop singer and songwriter.",
-    "genre": "Indie",
-    "country": "UK",
-    "image": "jackie-burhan.jpg",
-    "popularity": 45,
-    "tracks": ["Miss You","Sunset","Golden Hour"]
-  },
-  {
-    "id": "metal-band-x",
-    "name": "Metal Band X",
-    "bio": "Heavy death metal band from Scandinavia.",
-    "genre": "Metal",
-    "country": "Sweden",
-    "image": "metal-band-x.jpg",
-    "popularity": 52,
-    "tracks": ["Rage","Silent Night","Graveyard"]
-  },
-  {
-    "id": "zeri",
-    "name": "Zeri",
-    "bio": "Fictional fast-paced artist used for demo purposes.",
-    "genre": "Electronic",
-    "country": "USA",
-    "image": "zeri.jpg",
-    "popularity": 60,
-    "tracks": ["Flash","Electric Heart","Neon"]
-  },
-  {
-    "id": "maria",
-    "name": "Maria",
-    "bio": "Pop singer with modern production.",
-    "genre": "Pop",
-    "country": "Brazil",
-    "image": "maria.jpg",
-    "popularity": 50,
-    "tracks": ["Unholy","Love Me Back","Summer Night"]
-  }
+﻿[
+    {
+        "id":  "the-weeknd",
+        "name":  "The Weeknd",
+        "bio":  "Canadian singer, songwriter, and record producer known for blending R\u0026B and pop.",
+        "genre":  "R\u0026B",
+        "country":  "Canada",
+        "image":  "assets/images/the-weeknd.jpg",
+        "monthly_listeners":  123281725,
+        "tracks":  [
+                       "Blinding Lights",
+                       "Save Your Tears",
+                       "Starboy"
+                   ]
+    },
+    {
+        "id":  "taylor-swift",
+        "name":  "Taylor Swift",
+        "bio":  "American singer-songwriter known for her narrative songwriting across multiple genres.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/taylor-swift.png",
+        "monthly_listeners":  106201526,
+        "tracks":  [
+                       "Anti-Hero",
+                       "Love Story",
+                       "Cardigan"
+                   ]
+    },
+    {
+        "id":  "bruno-mars",
+        "name":  "Bruno Mars",
+        "bio":  "American singer-songwriter and record producer known for funk, soul, and pop style.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/bruno-mars.jpg",
+        "monthly_listeners":  114628739,
+        "tracks":  [
+                       "24K Magic",
+                       "Uptown Funk",
+                       "Just The Way You Are"
+                   ]
+    },
+    {
+        "id":  "rihanna",
+        "name":  "Rihanna",
+        "bio":  "Barbadian singer, actress and businesswoman known for her versatile pop and R\u0026B music.",
+        "genre":  "Pop",
+        "country":  "Barbados",
+        "image":  "assets/images/rihanna.jpg",
+        "monthly_listeners":  102648617,
+        "tracks":  [
+                       "Diamonds",
+                       "We Found Love",
+                       "Umbrella"
+                   ]
+    },
+    {
+        "id":  "lady-gaga",
+        "name":  "Lady Gaga",
+        "bio":  "American singer, songwriter, and actress known for her bold fashion and pop hits.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/lady-gaga.jpg",
+        "monthly_listeners":  102198488,
+        "tracks":  [
+                       "Poker Face",
+                       "Bad Romance",
+                       "Shallow"
+                   ]
+    },
+    {
+        "id":  "justin-bieber",
+        "name":  "Justin Bieber",
+        "bio":  "Canadian singer and songwriter who became a teen pop sensation in the late 2000s.",
+        "genre":  "Pop",
+        "country":  "Canada",
+        "image":  "assets/images/justin-bieber.jpg",
+        "monthly_listeners":  98835097,
+        "tracks":  [
+                       "Sorry",
+                       "Peaches",
+                       "Love Yourself"
+                   ]
+    },
+    {
+        "id":  "ed-sheeran",
+        "name":  "Ed Sheeran",
+        "bio":  "English singer-songwriter known for his acoustic pop songs and heartfelt lyrics.",
+        "genre":  "Pop",
+        "country":  "UK",
+        "image":  "assets/images/ed-sheeran.jpg",
+        "monthly_listeners":  95715018,
+        "tracks":  [
+                       "Shape of You",
+                       "Perfect",
+                       "Thinking Out Loud"
+                   ]
+    },
+    {
+        "id":  "billie-eilish",
+        "name":  "Billie Eilish",
+        "bio":  "American singer-songwriter known for her dark pop and whispery vocals.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/billie-eilish.jpg",
+        "monthly_listeners":  95105173,
+        "tracks":  [
+                       "Bad Guy",
+                       "Ocean Eyes",
+                       "Happier Than Ever"
+                   ]
+    },
+    {
+        "id":  "coldplay",
+        "name":  "Coldplay",
+        "bio":  "British rock band formed in London in 1996, known for anthemic songs.",
+        "genre":  "Rock",
+        "country":  "UK",
+        "image":  "assets/images/coldplay.jpg",
+        "monthly_listeners":  91358456,
+        "tracks":  [
+                       "Yellow",
+                       "Viva La Vida",
+                       "Clocks"
+                   ]
+    },
+    {
+        "id":  "ariana-grande",
+        "name":  "Ariana Grande",
+        "bio":  "American singer and actress known for her wide vocal range and pop hits.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/ariana-grande.jpg",
+        "monthly_listeners":  88579521,
+        "tracks":  [
+                       "7 Rings",
+                       "Problem",
+                       "Thank U, Next"
+                   ]
+    },
+    {
+        "id":  "drake",
+        "name":  "Drake",
+        "bio":  "Canadian rapper, singer, songwriter and actor with numerous chart-topping hits.",
+        "genre":  "Hip-hop",
+        "country":  "Canada",
+        "image":  "assets/images/drake.svg",
+        "monthly_listeners":  80728690,
+        "tracks":  [
+                       "God\u0027s Plan",
+                       "Hotline Bling",
+                       "One Dance"
+                   ]
+    },
+    {
+        "id":  "bad-bunny",
+        "name":  "Bad Bunny",
+        "bio":  "Puerto Rican rapper and singer who blends Latin trap and reggaeton.",
+        "genre":  "Latin",
+        "country":  "Puerto Rico",
+        "image":  "assets/images/bad-bunny.jpg",
+        "monthly_listeners":  79550062,
+        "tracks":  [
+                       "Dákiti",
+                       "I Like It",
+                       "MIA"
+                   ]
+    },
+    {
+        "id":  "david-guetta",
+        "name":  "David Guetta",
+        "bio":  "French DJ and record producer known for electronic dance music hits.",
+        "genre":  "Electronic",
+        "country":  "France",
+        "image":  "assets/images/david-guetta.jpg",
+        "monthly_listeners":  79368591,
+        "tracks":  [
+                       "Titanium",
+                       "Without You",
+                       "Hey Mama"
+                   ]
+    },
+    {
+        "id":  "maroon-5",
+        "name":  "Maroon 5",
+        "bio":  "American pop rock band formed in Los Angeles in 1994.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/maroon-5.jpg",
+        "monthly_listeners":  71851699,
+        "tracks":  [
+                       "Memories",
+                       "She Will Be Loved",
+                       "Sugar"
+                   ]
+    },
+    {
+        "id":  "eminem",
+        "name":  "Eminem",
+        "bio":  "American rapper and record producer, one of the best-selling artists of all time.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/eminem.jpg",
+        "monthly_listeners":  71231549,
+        "tracks":  [
+                       "Lose Yourself",
+                       "Without Me",
+                       "Not Afraid"
+                   ]
+    },
+    {
+        "id":  "kendrick-lamar",
+        "name":  "Kendrick Lamar",
+        "bio":  "American rapper and songwriter known for his introspective lyrics and social commentary.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/kendrick-lamar.jpg",
+        "monthly_listeners":  71153529,
+        "tracks":  [
+                       "HUMBLE.",
+                       "Alright",
+                       "King Kunta"
+                   ]
+    },
+    {
+        "id":  "shakira",
+        "name":  "Shakira",
+        "bio":  "Colombian singer and songwriter known for her pop and Latin music fusion.",
+        "genre":  "Latin",
+        "country":  "Colombia",
+        "image":  "assets/images/shakira.jpg",
+        "monthly_listeners":  69521617,
+        "tracks":  [
+                       "Hips Don\u0027t Lie",
+                       "Waka Waka",
+                       "Whenever, Wherever"
+                   ]
+    },
+    {
+        "id":  "sza",
+        "name":  "SZA",
+        "bio":  "American singer-songwriter known for her soulful R\u0026B style.",
+        "genre":  "R\u0026B",
+        "country":  "USA",
+        "image":  "assets/images/sza.jpg",
+        "monthly_listeners":  69118114,
+        "tracks":  [
+                       "Kill Bill",
+                       "The Weekend",
+                       "Good Days"
+                   ]
+    },
+    {
+        "id":  "j-balvin",
+        "name":  "J Balvin",
+        "bio":  "Colombian reggaeton singer known for his influential Latin hits.",
+        "genre":  "Latin",
+        "country":  "Colombia",
+        "image":  "assets/images/j-balvin.jpg",
+        "monthly_listeners":  66468998,
+        "tracks":  [
+                       "Mi Gente",
+                       "Blanco",
+                       "In Da Getto"
+                   ]
+    },
+    {
+        "id":  "sia",
+        "name":  "Sia",
+        "bio":  "Australian singer-songwriter known for her powerful pop hits and distinctive voice.",
+        "genre":  "Pop",
+        "country":  "Australia",
+        "image":  "assets/images/sia.jpg",
+        "monthly_listeners":  66262780,
+        "tracks":  [
+                       "Chandelier",
+                       "Cheap Thrills",
+                       "Elastic Heart"
+                   ]
+    },
+    {
+        "id":  "calvin-harris",
+        "name":  "Calvin Harris",
+        "bio":  "Scottish DJ, singer and record producer known for his dance and electronic tracks.",
+        "genre":  "Electronic",
+        "country":  "UK",
+        "image":  "assets/images/calvin-harris.jpg",
+        "monthly_listeners":  66117162,
+        "tracks":  [
+                       "Summer",
+                       "Feel So Close",
+                       "One Kiss"
+                   ]
+    },
+    {
+        "id":  "michael-jackson",
+        "name":  "Michael Jackson",
+        "bio":  "American singer-songwriter and dancer known as the \"King of Pop\".",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/michael-jackson.jpg",
+        "monthly_listeners":  65784779,
+        "tracks":  [
+                       "Billie Jean",
+                       "Thriller",
+                       "Smooth Criminal"
+                   ]
+    },
+    {
+        "id":  "kanye-west",
+        "name":  "Kanye West",
+        "bio":  "American rapper, singer, and fashion designer known for his genre-bending music.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/kanye-west.jpg",
+        "monthly_listeners":  65215267,
+        "tracks":  [
+                       "Stronger",
+                       "Gold Digger",
+                       "Heartless"
+                   ]
+    },
+    {
+        "id":  "katy-perry",
+        "name":  "Katy Perry",
+        "bio":  "American singer and songwriter known for her catchy pop anthems.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/katy-perry.jpg",
+        "monthly_listeners":  62996103,
+        "tracks":  [
+                       "Roar",
+                       "Firework",
+                       "Dark Horse"
+                   ]
+    },
+    {
+        "id":  "lana-del-rey",
+        "name":  "Lana Del Rey",
+        "bio":  "American singer-songwriter known for her dreamy, cinematic pop style.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/lana-del-rey.jpg",
+        "monthly_listeners":  62591929,
+        "tracks":  [
+                       "Summertime Sadness",
+                       "Born To Die",
+                       "Video Games"
+                   ]
+    },
+    {
+        "id":  "post-malone",
+        "name":  "Post Malone",
+        "bio":  "American singer, rapper, and songwriter known for blending genres like pop and hip-hop.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/post-malone.webp",
+        "monthly_listeners":  62125073,
+        "tracks":  [
+                       "Circles",
+                       "Rockstar",
+                       "Sunflower"
+                   ]
+    },
+    {
+        "id":  "dua-lipa",
+        "name":  "Dua Lipa",
+        "bio":  "English singer-songwriter known for her disco-influenced pop sound.",
+        "genre":  "Pop",
+        "country":  "UK",
+        "image":  "assets/images/dua-lipa.jpg",
+        "monthly_listeners":  61512763,
+        "tracks":  [
+                       "Don\u0027t Start Now",
+                       "Levitating",
+                       "New Rules"
+                   ]
+    },
+    {
+        "id":  "doja-cat",
+        "name":  "Doja Cat",
+        "bio":  "American rapper and singer known for her playful style and viral hits.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/doja-cat.jpg",
+        "monthly_listeners":  61340759,
+        "tracks":  [
+                       "Say So",
+                       "Kiss Me More",
+                       "Paint The Town Red"
+                   ]
+    },
+    {
+        "id":  "pitbull",
+        "name":  "Pitbull",
+        "bio":  "American rapper and singer, also known by his nickname \"Mr. Worldwide\".",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/pitbull.jpg",
+        "monthly_listeners":  60885508,
+        "tracks":  [
+                       "Give Me Everything",
+                       "Timber",
+                       "I Know You Want Me"
+                   ]
+    },
+    {
+        "id":  "travis-scott",
+        "name":  "Travis Scott",
+        "bio":  "American rapper and record producer known for his energetic performances.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/travis-scott.jpg",
+        "monthly_listeners":  60433120,
+        "tracks":  [
+                       "SICKO MODE",
+                       "goosebumps",
+                       "Highest In The Room"
+                   ]
+    },
+    {
+        "id":  "chris-brown",
+        "name":  "Chris Brown",
+        "bio":  "American singer, songwriter, and dancer known for his R\u0026B and pop hits.",
+        "genre":  "R\u0026B",
+        "country":  "USA",
+        "image":  "assets/images/chris-brown.jpg",
+        "monthly_listeners":  60005593,
+        "tracks":  [
+                       "Forever",
+                       "With You",
+                       "Go Crazy"
+                   ]
+    },
+    {
+        "id":  "daddy-yankee",
+        "name":  "Daddy Yankee",
+        "bio":  "Puerto Rican singer-songwriter known as the \"King of Reggaeton\".",
+        "genre":  "Latin",
+        "country":  "Puerto Rico",
+        "image":  "assets/images/daddy-yankee.png",
+        "monthly_listeners":  58023209,
+        "tracks":  [
+                       "Gasolina",
+                       "Dura",
+                       "Con Calma"
+                   ]
+    },
+    {
+        "id":  "imagine-dragons",
+        "name":  "Imagine Dragons",
+        "bio":  "American pop rock band known for their hits in the 2010s.",
+        "genre":  "Rock",
+        "country":  "USA",
+        "image":  "assets/images/imagine-dragons.jpg",
+        "monthly_listeners":  57727636,
+        "tracks":  [
+                       "Believer",
+                       "Radioactive",
+                       "Demons"
+                   ]
+    },
+    {
+        "id":  "adele",
+        "name":  "Adele",
+        "bio":  "English singer-songwriter known for her powerful voice and soulful ballads.",
+        "genre":  "Pop",
+        "country":  "UK",
+        "image":  "assets/images/adele.jpg",
+        "monthly_listeners":  56958174,
+        "tracks":  [
+                       "Hello",
+                       "Rolling in the Deep",
+                       "Someone Like You"
+                   ]
+    },
+    {
+        "id":  "tate-mcrae",
+        "name":  "Tate McRae",
+        "bio":  "Canadian singer-songwriter known for her emotive pop songs.",
+        "genre":  "Pop",
+        "country":  "Canada",
+        "image":  "assets/images/tate-mcrae.jpg",
+        "monthly_listeners":  55570023,
+        "tracks":  [
+                       "you broke me first",
+                       "Feel Like Shit",
+                       "dont be sad"
+                   ]
+    },
+    {
+        "id":  "beyonce",
+        "name":  "Beyoncé",
+        "bio":  "American singer-songwriter and actress, former lead singer of Destiny\u0027s Child.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/beyonce.jpg",
+        "monthly_listeners":  54867242,
+        "tracks":  [
+                       "Halo",
+                       "Crazy in Love",
+                       "Single Ladies"
+                   ]
+    },
+    {
+        "id":  "aurora",
+        "name":  "Aurora",
+        "bio":  "Norwegian singer-songwriter known for her ethereal voice and atmospheric songs.",
+        "genre":  "Alternative",
+        "country":  "Norway",
+        "image":  "assets/images/aurora.jpg",
+        "monthly_listeners":  14327169,
+        "tracks":  [
+                       "Running With The Wolves",
+                       "Queendom",
+                       "The Seed"
+                   ]
+    },
+    {
+        "id":  "justin-timberlake",
+        "name":  "Justin Timberlake",
+        "bio":  "American singer-songwriter and actor, former member of NSYNC.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/justin-timberlake.jpg",
+        "monthly_listeners":  48908212,
+        "tracks":  [
+                       "Cry Me a River",
+                       "Can\u0027t Stop the Feeling",
+                       "Mirrors"
+                   ]
+    },
+    {
+        "id":  "selena-gomez",
+        "name":  "Selena Gomez",
+        "bio":  "American singer and actress who began her career on Disney Channel.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/selena-gomez.jpg",
+        "monthly_listeners":  42388913,
+        "tracks":  [
+                       "Lose You to Love Me",
+                       "Love You Like a Love Song",
+                       "Bad Liar"
+                   ]
+    },
+    {
+        "id":  "camila-cabello",
+        "name":  "Camila Cabello",
+        "bio":  "Cuban-American singer-songwriter and former member of Fifth Harmony.",
+        "genre":  "Pop",
+        "country":  "USA",
+        "image":  "assets/images/camila-cabello.jpg",
+        "monthly_listeners":  43940546,
+        "tracks":  [
+                       "Havana",
+                       "Señorita",
+                       "Never Be The Same"
+                   ]
+    },
+    {
+        "id":  "bts",
+        "name":  "BTS",
+        "bio":  "South Korean boy band known for their global K-pop hits.",
+        "genre":  "K-pop",
+        "country":  "South Korea",
+        "image":  "assets/images/bts.jpg",
+        "monthly_listeners":  24382881,
+        "tracks":  [
+                       "Dynamite",
+                       "Butter",
+                       "Boy With Luv"
+                   ]
+    },
+    {
+        "id":  "blackpink",
+        "name":  "BLACKPINK",
+        "bio":  "South Korean girl group known for their catchy K-pop and dance tracks.",
+        "genre":  "K-pop",
+        "country":  "South Korea",
+        "image":  "assets/images/blackpink.png",
+        "monthly_listeners":  27094470,
+        "tracks":  [
+                       "DDU-DU DDU-DU",
+                       "Kill This Love",
+                       "How You Like That"
+                   ]
+    },
+    {
+        "id":  "alan-walker",
+        "name":  "Alan Walker",
+        "bio":  "Norwegian DJ and record producer known for electronic dance music.",
+        "genre":  "Electronic",
+        "country":  "Norway",
+        "image":  "assets/images/alan-walker.jpg",
+        "monthly_listeners":  26196494,
+        "tracks":  [
+                       "Faded",
+                       "Alone",
+                       "On My Way"
+                   ]
+    },
+    {
+        "id":  "queen",
+        "name":  "Queen",
+        "bio":  "British rock band formed in London in 1970, known for their eclectic anthems.",
+        "genre":  "Rock",
+        "country":  "UK",
+        "image":  "assets/images/queen.jpg",
+        "monthly_listeners":  49901720,
+        "tracks":  [
+                       "Bohemian Rhapsody",
+                       "Another One Bites The Dust",
+                       "Don\u0027t Stop Me Now"
+                   ]
+    },
+    {
+        "id":  "ac-dc",
+        "name":  "AC/DC",
+        "bio":  "Australian rock band formed in Sydney in 1973, famous for their hard rock style.",
+        "genre":  "Rock",
+        "country":  "Australia",
+        "image":  "assets/images/ac-dc.jpg",
+        "monthly_listeners":  36216284,
+        "tracks":  [
+                       "Highway to Hell",
+                       "Back in Black",
+                       "Thunderstruck"
+                   ]
+    },
+    {
+        "id":  "lil-nas-x",
+        "name":  "Lil Nas X",
+        "bio":  "American rapper and singer known for blending country and hip-hop styles.",
+        "genre":  "Hip-hop",
+        "country":  "USA",
+        "image":  "assets/images/lil-nas-x.jpg",
+        "monthly_listeners":  18753469,
+        "tracks":  [
+                       "Old Town Road",
+                       "Montero (Call Me By Your Name)",
+                       "Panini"
+                   ]
+    },
+    {
+        "id":  "daft-punk",
+        "name":  "Daft Punk",
+        "bio":  "French electronic music duo known for their influence on the dance music scene.",
+        "genre":  "Electronic",
+        "country":  "France",
+        "image":  "assets/images/daft-punk.svg",
+        "monthly_listeners":  26975622,
+        "tracks":  [
+                       "One More Time",
+                       "Get Lucky",
+                       "Around the World"
+                   ]
+    },
+    {
+        "id":  "pearl-jam",
+        "name":  "Pearl Jam",
+        "bio":  "American rock band formed in Seattle in 1990, part of the grunge movement.",
+        "genre":  "Rock",
+        "country":  "USA",
+        "image":  "assets/images/pearl-jam.jpg",
+        "monthly_listeners":  16077560,
+        "tracks":  [
+                       "Alive",
+                       "Black",
+                       "Jeremy"
+                   ]
+    },
+    {
+        "id":  "metallica",
+        "name":  "Metallica",
+        "bio":  "American heavy metal band formed in Los Angeles in 1981, known for their powerful metal anthems.",
+        "genre":  "Metal",
+        "country":  "USA",
+        "image":  "assets/images/metallica.jpg",
+        "monthly_listeners":  31056250,
+        "tracks":  [
+                       "Enter Sandman",
+                       "Nothing Else Matters",
+                       "Master of Puppets"
+                   ]
+    },
+    {
+        "id":  "u2",
+        "name":  "U2",
+        "bio":  "Irish rock band from Dublin formed in 1976, known for their stadium rock sound.",
+        "genre":  "Rock",
+        "country":  "Ireland",
+        "image":  "assets/images/u2.jpg",
+        "monthly_listeners":  20304481,
+        "tracks":  [
+                       "With or Without You",
+                       "Beautiful Day",
+                       "One"
+                   ]
+    }
 ]
