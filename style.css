@@ -1,0 +1,249 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #111;
+    color: #e7e7e7;
+    font-family: "Inter", sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background: #1a1a1a;
+    padding: 1.3rem;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+    .sidebar h4 {
+        color: #bf00cf;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+
+.nav-column {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+    .nav-column a {
+        color: #9f9f9f;
+        text-decoration: none;
+        padding: .6rem 0;
+        transition: .2s;
+    }
+
+        .nav-column a:hover,
+        .nav-column a:focus {
+            color: white;
+            background: rgba(191,0,207,0.15);
+            padding-left: .5rem;
+        }
+
+        .nav-column a.active {
+            color: white;
+            background: #bf00cf;
+        }
+
+.rightbar {
+    width: 210px;
+    background: #1a1a1a;
+    padding: 1.2rem;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    border-left: 1px solid rgba(255,255,255,0.08);
+    overflow-y: auto;
+}
+
+    .rightbar h5 {
+        font-weight: 600;
+        margin-bottom: .5rem;
+    }
+
+.list-group-item {
+    background: rgba(255,255,255,0.05);
+    color: #e7e7e7;
+    border: none;
+    padding: .6rem .8rem;
+    margin-bottom: .3rem;
+    border-radius: 10px;
+}
+
+.main {
+    margin-left: 220px;
+    margin-right: 210px;
+    padding: 1.8rem;
+    width: calc(100% - 430px);
+}
+
+    .main h2,
+    .main h3 {
+        font-weight: 700;
+    }
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 1rem;
+}
+
+.search input {
+    width: 100%;
+    padding: .6rem 1rem;
+    border: none;
+    border-radius: 999px;
+    outline: none;
+    background: rgba(255,255,255,0.04);
+    color: white;
+}
+
+.genre-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.genre-card {
+    background: #1a1a1a;
+    border-radius: 14px;
+    overflow: hidden;
+    width: 240px;
+    transition: transform .2s;
+    cursor: pointer;
+}
+
+    .genre-card:hover {
+        transform: scale(1.03);
+    }
+
+    .genre-card img {
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+    }
+
+    .genre-card .meta {
+        padding: .8rem;
+    }
+
+.track-row {
+    background: rgba(255,255,255,0.035);
+    padding: .6rem 1rem;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .8rem;
+}
+
+.track-left img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.track-title .title {
+    font-weight: 600;
+}
+
+.track-title .meta {
+    font-size: .8rem;
+    color: #9f9f9f;
+}
+
+.player {
+    position: fixed;
+    bottom: 0;
+    left: 220px;
+    right: 210px;
+    background: #0d0d0d;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: .8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .player button {
+        background: #bf00cf;
+        border: none;
+        padding: .4rem .9rem;
+        border-radius: 10px;
+        font-size: .9rem;
+        color: white;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+        .player button:hover {
+            opacity: .8;
+        }
+
+form label {
+    color: #e7e7e7;
+}
+
+form .form-control {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+}
+
+    form .form-control:focus {
+        border-color: #bf00cf;
+        box-shadow: 0 0 6px rgba(191,0,207,0.6);
+    }
+
+button.btn-primary {
+    background: #bf00cf !important;
+    border: none;
+    padding: .6rem 1.2rem;
+    border-radius: 14px;
+}
+
+    button.btn-primary:hover {
+        opacity: .8;
+    }
+
+#artist-list li {
+    background: #1a1a1a;
+    border-radius: 14px;
+    padding: .8rem;
+    transition: .2s;
+}
+
+    #artist-list li:hover {
+        transform: translateY(-5px);
+    }
+
+@media (max-width: 900px) {
+    .sidebar,
+    .rightbar {
+        display: none;
+    }
+
+    .main {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .player {
+        left: 0;
+        right: 0;
+    }
+}
